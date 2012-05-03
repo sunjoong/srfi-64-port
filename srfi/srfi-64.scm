@@ -82,7 +82,9 @@
     ;; because of nested block comments used in srfi-64-test.scm file.
     ;; Comments are comments. So, not problem.
     (use-modules (ice-9 syncase))))
-  (cond-expand-provide (current-module) '(srfi-64)))
+  (eval-when
+   (compile load eval)
+   (cond-expand-provide (current-module) '(srfi-64))))
  (kawa
   (module-compile-options warn-undefined-variable: #t
                           warn-invoke-unknown-method: #t)
