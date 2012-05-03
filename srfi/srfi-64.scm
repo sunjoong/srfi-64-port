@@ -83,7 +83,7 @@
     ;; Comments are comments. So, not problem.
     (use-modules (ice-9 syncase))))
   (eval-when
-   (compile load eval expand)
+   (compile load)
    (cond-expand-provide (current-module) '(srfi-64))))
  (kawa
   (module-compile-options warn-undefined-variable: #t
