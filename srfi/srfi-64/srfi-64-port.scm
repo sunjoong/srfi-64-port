@@ -24,7 +24,7 @@
 ;; 2007 Per Bothner original.
 ;; 2012 Sunjoong Lee modified to fit Guile 2.0.5.
 
-;; Date: 2012-05-03
+;; Date: 2012-05-07
 
 ;; Porting Tips:
 ;; 1. Check required SRFIs;
@@ -61,8 +61,9 @@
 
 (cond-expand
  (guile
-  ;; 1. Put this file to srfi directory.
-  ;;    $ mkdir srfi
+  ;; 1. Put these files to srfi and srfi/srfi-64 directories.
+  ;;    $ mkdir -p srfi/srfi-64
+  ;;    $ cp #(some location)#/srfi-64-port.scm srfi/srfi-64
   ;;    $ cp #(some location)#/srfi-64.scm srfi
   ;; 2. Use -L and --use-srfi option.
   ;;    $ guile -L `pwd` --use-srfi=64
@@ -81,9 +82,7 @@
     ;; Guile 1.8 fails the test suite for testing srfi-64 by Donovan Kolbly
     ;; because of nested block comments used in srfi-64-test.scm file.
     ;; Comments are comments. So, not problem.
-    (use-modules (ice-9 syncase))))
-  ;; (cond-expand-provide (current-module) '(srfi-64))
-  )
+    (use-modules (ice-9 syncase)))))
  (kawa
   (module-compile-options warn-undefined-variable: #t
                           warn-invoke-unknown-method: #t)
